@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1> Teachers list </h1>
+<>
+    User: {{ request.user.name }} <br/>
+    <a href="{% url "accounts:logout" %}"> log out </a>
+     <a href="{% url "accounts:login" %}"> log in </a>
+
+{% for teacher in object_list %}
+    <li><a href="{% url "lms:teacher-classes" teacher_id=teacher.id %}"> {{ teacher.name }} </a></li>
+{% endfor %}
+</ul>
+{% endblock content %}

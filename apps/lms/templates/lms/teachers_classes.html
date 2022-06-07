@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1> Groups list </h1>
+<ul>
+{% for group in object_list %}
+    <h2> {{ group.name }}</h2>
+    <p>Students: </p>
+        <ul>
+            {% for student in group.students.all %}
+                <li>{{  student.name }}</li>
+            {% endfor %}
+        </ul>
+    <p>Lessons: </p>
+        <ul>
+            {% for lesson in group.lessons.all %}
+                <li><a href="{% url "lms:lesson-details" lesson_id=lesson.id %}"> {{  lesson.name }} </a></li>
+            {% endfor %}
+            <li> <a href="{% url "lms:lesson-create" class_id=group.id %}">+ add lesson</a> </li>
+        </ul>
+
+{% endfor %}
+</ul>
+{% endblock content %}
