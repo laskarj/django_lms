@@ -19,7 +19,7 @@ services:
       - db
     ports:
       - 8000:8000
-    command: "python ./manage.py runserver 0.0.0.0:8000"
+    command: /bin/bash -c "pip install -r requirements.txt && python ./manage.py runserver 0.0.0.0:8000"
 
 volumes:
   pgdata: { }

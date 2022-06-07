@@ -1,7 +1,7 @@
 FROM python:3.8
 
-RUN pip install django
-RUN pip install psycopg2-binary
+ADD requirements.txt /requirements.txt
+RUN pip install -r /requirements.txt
 
 ADD . /src
 WORKDIR /src
