@@ -43,10 +43,8 @@ INSTALLED_APPS = [
 
     'apps.lms',
     'apps.authentication',
-    'apps.movies',
+    'apps.imdb',
 ]
-
-
 
 
 ROOT_URLCONF = 'urls'
