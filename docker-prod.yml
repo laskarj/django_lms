@@ -18,8 +18,7 @@ services:
     depends_on:
       - db
     environment:
-        DJANGO_SETTINGS_MODULE: 'settings.dev'
-        PY_AUTORELOAD: 1
+        DJANGO_SETTINGS_MODULE: 'settings.prod'
     ports:
       - 8000:8000
     command: /bin/bash -c 'pip install -r requirements.txt && invoke run'
