@@ -4,3 +4,4 @@ django-crispy-forms==1.14.0
 django-summernote==0.8.20.0
 uwsgi==2.0.20
 invoke==1.7.0
+django-bootstrap-datepicker-plus==4.0.0

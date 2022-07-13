@@ -3,10 +3,10 @@ version: "3.0"
 services:
   db:
     image: postgres
+    env_file:
+      - .env
     environment:
-      - POSTGRES_PASSWORD=123
       - PGDATA=/var/lib/postgresql/pgdata/
-      - POSTGRES_DB=ithilleldb
     volumes:
       - pgdata:/var/lib/postgresql/pgdata/
     ports:
@@ -15,14 +15,30 @@ services:
     build: .
     volumes:
       - .:/src/
+      - static:/static
+      - media:/media
     depends_on:
       - db
+    env_file:
+      - .env
     environment:
         DJANGO_SETTINGS_MODULE: 'settings.dev'
         PY_AUTORELOAD: 1
-    ports:
-      - 8000:8000
+
     command: /bin/bash -c 'pip install -r requirements.txt && invoke run'
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - static:/static:ro
+      - media:/media:ro
+    links:
+      - web
+    ports:
+      - 8000:80
 
 volumes:
   pgdata: { }
+  static: { }
+  media: { }
