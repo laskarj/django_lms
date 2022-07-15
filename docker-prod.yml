@@ -3,10 +3,10 @@ version: "3.0"
 services:
   db:
     image: postgres
+    env_file:
+      - .env
     environment:
-      - POSTGRES_PASSWORD=123
       - PGDATA=/var/lib/postgresql/pgdata/
-      - POSTGRES_DB=ithilleldb
     volumes:
       - pgdata:/var/lib/postgresql/pgdata/
     ports:
@@ -32,7 +32,8 @@ services:
     links:
       - web
     ports:
-      - 8000:80
+      - 80:80
+      - 443:443
 
 volumes:
   pgdata: { }
