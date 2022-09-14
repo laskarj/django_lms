@@ -1,0 +1,3 @@
+
+Hi, {{ user.name }}!
+To activate your user please visit {{ site_url }}{% url "authentication:registration-activate" token=activation_token.token %}

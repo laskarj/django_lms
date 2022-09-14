@@ -13,12 +13,14 @@ services:
       - 5432:5432
   web:
     build: .
+    image: ithillel-web
     volumes:
       - .:/src/
       - static:/static
       - media:/media
     depends_on:
       - db
+      - rabbitmq
     env_file:
       - .env
     environment:
@@ -26,6 +28,23 @@ services:
         PY_AUTORELOAD: 1
 
     command: /bin/bash -c 'pip install -r requirements.txt && invoke run'
+  rabbitmq:
+    image: rabbitmq
+
+  celery_worker:
+    build: .
+    image: ithillel-web
+    volumes_from:
+      - web
+    depends_on:
+      - db
+      - rabbitmq
+    env_file:
+      - .env
+    environment:
+        DJANGO_SETTINGS_MODULE: 'settings.dev'
+
+    command: /bin/bash -c 'pip install -r requirements.txt && celery -A celery_app worker'
 
   nginx:
     image: nginx

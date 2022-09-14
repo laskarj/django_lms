@@ -1,0 +1,7 @@
+<html>
+
+<body>
+    Hi, {{ user.name }}!
+    To activate your user please follow a <a href="{{ site_url }}{% url 'authentication:registration-activate' token=activation_token.token %}"> link</a>
+</body>
+</html>

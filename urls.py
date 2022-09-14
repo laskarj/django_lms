@@ -27,6 +27,7 @@ urlpatterns = [
     path('auth/', include('apps.authentication.urls', namespace='auth')),
     path('summernote/', include('django_summernote.urls')),
     path('accounts/', include(('django.contrib.auth.urls', 'accounts'), namespace='accounts')),
+    path('authentication/', include('apps.authentication.urls', namespace='authentication')),
 ]
 
 if settings.DEBUG:

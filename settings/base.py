@@ -142,3 +142,14 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
+
+DEFAULT_FROM_EMAIL = 'admin@eduard.com'
+SITE_URL = 'http://127.0.0.1:80'
+
+
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', '')
+EMAIL_HOST = os.getenv('EMAIL_HOST', '')
+EMAIL_PORT = os.getenv('EMAIL_PORT', '465')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS').lower() in ('true', '1')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
