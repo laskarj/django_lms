@@ -20,3 +20,5 @@ MEDIA_ROOT = '/media/'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/static/'
+
+CELERY_BROKER_URL = 'amqp://guest:guest@rabbitmq3:5672/'

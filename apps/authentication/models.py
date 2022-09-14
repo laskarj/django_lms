@@ -1,6 +1,7 @@
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.models import PermissionsMixin, UserManager
+from django.utils.crypto import get_random_string
 from django.db import models
 
 
@@ -67,3 +68,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
+
+
+def get_activation_token():
+    return get_random_string(125)
+
+
+class ActivationToken(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=125, default=get_activation_token)
+    created_at = models.DateTimeField(auto_now_add=True)
